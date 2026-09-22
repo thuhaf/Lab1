@@ -1,0 +1,103 @@
+{
+    "he_thong": "EduPortal – hệ thống quản lý học tập trực tuyến giả định",
+    "thanh_phan": [
+        {
+            "ten": "Trình duyệt người dùng (Client)",
+            "vai_tro": "Giao diện để sinh viên và giảng viên đăng nhập, xem bài giảng, nộp bài tập và xem điểm số trên EduPortal"
+        },
+        {
+            "ten": "Máy chủ ứng dụng EduPortal (App Server)",
+            "vai_tro": "Xử lý logic nghiệp vụ: xác thực danh tính, phân quyền truy cập, nhận bài nộp, tính điểm và điều phối dữ liệu giữa client và database"
+        },
+        {
+            "ten": "Cơ sở dữ liệu EduPortal (Database)",
+            "vai_tro": "Lưu trữ tài khoản và mật khẩu người dùng, điểm số, bài nộp, danh sách lớp học và thông tin khóa học"
+        }
+    ],
+    "moi_de_doa": [
+        {
+            "ma": "M01",
+            "phat_bieu": "Khi sinh viên gửi thông tin đăng nhập qua kết nối HTTP không mã hóa, kẻ tấn công cùng mạng nội bộ có thể chặn và đọc được tên đăng nhập cùng mật khẩu dạng bản rõ",
+            "nguyen_ly": 3,
+            "attack": "T1557",
+            "tac_dong": 5,
+            "kha_nang": 3
+        },
+        {
+            "ma": "M02",
+            "phat_bieu": "Nếu ô nhập liệu trên trang đăng nhập EduPortal không lọc ký tự đặc biệt, kẻ tấn công có thể chèn câu lệnh SQL độc hại để truy xuất toàn bộ bảng tài khoản và điểm số trong database",
+            "nguyen_ly": 5,
+            "attack": "T1190",
+            "tac_dong": 5,
+            "kha_nang": 4
+        },
+        {
+            "ma": "M03",
+            "phat_bieu": "Khi máy chủ EduPortal không kiểm tra vai trò người dùng ở mỗi yêu cầu xem điểm, sinh viên A có thể truy cập điểm của sinh viên B bằng cách thay đổi tham số ID trên URL",
+            "nguyen_ly": 2,
+            "attack": "T1078",
+            "tac_dong": 4,
+            "kha_nang": 4
+        },
+        {
+            "ma": "M04",
+            "phat_bieu": "Nếu cổng quản trị database của EduPortal được mở ra internet mà không có tường lửa, kẻ tấn công bên ngoài có thể dò quét và kết nối trực tiếp vào database để đọc hoặc xóa dữ liệu",
+            "nguyen_ly": 2,
+            "attack": "T1190",
+            "tac_dong": 5,
+            "kha_nang": 2
+        },
+        {
+            "ma": "M05",
+            "phat_bieu": "Khi trang nộp bài của EduPortal không giới hạn loại tệp được tải lên, kẻ tấn công có thể tải lên tệp thực thi độc hại và kích hoạt nó trên máy chủ để chiếm quyền điều khiển",
+            "nguyen_ly": 3,
+            "attack": "T1105",
+            "tac_dong": 5,
+            "kha_nang": 3
+        },
+        {
+            "ma": "M06",
+            "phat_bieu": "Nếu EduPortal không giới hạn số lần đăng nhập sai, kẻ tấn công có thể dùng công cụ tự động thử hàng nghìn mật khẩu để chiếm tài khoản sinh viên hoặc giảng viên",
+            "nguyen_ly": 4,
+            "attack": "T1110",
+            "tac_dong": 4,
+            "kha_nang": 4
+        },
+        {
+            "ma": "M07",
+            "phat_bieu": "Khi trang hiển thị bình luận trên bài giảng EduPortal không mã hóa đầu ra, kẻ tấn công có thể chèn mã JavaScript độc hại vào bình luận để đánh cắp cookie phiên đăng nhập của sinh viên khác khi họ xem trang đó",
+            "nguyen_ly": 5,
+            "attack": "T1059.007",
+            "tac_dong": 4,
+            "kha_nang": 3
+        },
+        {
+            "ma": "M08",
+            "phat_bieu": "Nếu token phiên đăng nhập của EduPortal không hết hạn sau khi người dùng đăng xuất, kẻ tấn công lấy được token cũ từ lịch sử trình duyệt có thể tiếp tục truy cập tài khoản mà không cần mật khẩu",
+            "nguyen_ly": 4,
+            "attack": "T1550.004",
+            "tac_dong": 4,
+            "kha_nang": 3
+        }
+    ],
+    "chon_xu_ly": [
+        {
+            "ma": "M02",
+            "chi_phi": 8000000,
+            "don_vi": "VND/lần triển khai",
+            "can_cu": "Ước lượng 2 ngày công lập trình viên backend để bổ sung thư viện parameterized query và viết lại các câu truy vấn hiện tại, theo mức lương thị trường 4 triệu VND mỗi ngày công tại TP.HCM năm 2024; chi phí một lần, không phát sinh hàng năm"
+        },
+        {
+            "ma": "M06",
+            "chi_phi": 3000000,
+            "don_vi": "VND/lần triển khai",
+            "can_cu": "Ước lượng 0.5 ngày công lập trình viên để cấu hình giới hạn 5 lần thử sai và thêm CAPTCHA, dùng thư viện mã nguồn mở sẵn có; tác động cao và khả năng xảy ra cao nhất trong các mối còn lại nên ưu tiên xử lý trước"
+        },
+        {
+            "ma": "M03",
+            "chi_phi": 6000000,
+            "don_vi": "VND/lần triển khai",
+            "can_cu": "Ước lượng 1.5 ngày công lập trình viên để rà soát và bổ sung kiểm tra phân quyền tại mọi endpoint trả về điểm số, theo mức lương thị trường 4 triệu VND mỗi ngày công; rủi ro trực tiếp tới tính toàn vẹn điểm số của toàn bộ sinh viên nên được ưu tiên cao"
+        }
+    ]
+}
